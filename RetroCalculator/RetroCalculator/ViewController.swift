@@ -13,23 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var outputLabel: UILabel!
     
-    var result = ""
-    var left = ""
-    var right = ""
-    var running = ""
-    
     var btnSound: AVAudioPlayer!
-    
-    enum Sign: String{
-        case Divide = "/"
-        case Multiply = "*"
-        case Add = "+"
-        case Subtract = "-"
-        case Empty = "Empty"
-        case Equal = "Equal"
-    }
-    
-    var operation = Sign.Empty
     
 
     override func viewDidLoad() {
@@ -54,7 +38,6 @@ class ViewController: UIViewController {
     }
     
     func playSound(){
-        outputLabel.text =
         if(btnSound.isPlaying){
             btnSound.stop()
         }
@@ -66,9 +49,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func applyOperation(oper: Sign){
-
-    }
 
 
 }

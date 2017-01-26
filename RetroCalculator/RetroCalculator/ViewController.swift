@@ -14,6 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var outputLabel: UILabel!
     
     var btnSound: AVAudioPlayer!
+    var runningNumber = ""
+    var leftNum:Double = 0.0
+    var rightNum:Double = 0.0
+    var result:Double = 0.0
+    var sign = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +38,56 @@ class ViewController: UIViewController {
     
     @IBAction func numberPressed(sender: UIButton){
         playSound()
-        outputLabel.text = "\(sender.tag)"
+        runningNumber += "\(sender.tag)"
+        outputLabel.text = runningNumber
+    }
+    
+    @IBAction func signPressed(sender: UIButton){
+        playSound()
+        
+        switch sender.tag {
+        case 0:
+            if(sign != -1){
+                rightNum = Double(runningNumber)!
+                
+                switch sign {
+                case 1:
+                    result = leftNum + rightNum
+                case 2:
+                    result = leftNum - rightNum
+                case 3:
+                    result = leftNum * rightNum
+                case 4:
+                    result = leftNum / rightNum
+                default:
+                    break
+                }
+                leftNum = result
+                rightNum = 0.0
+                sign = -1
+                runningNumber = ""
+                outputLabel.text = "\(result)"
+            }
+        default:
+            sign = sender.tag
+            if(runningNumber == ""){
+                leftNum = result
+            }
+            else{
+                leftNum = Double(runningNumber)!
+            }
+            runningNumber = ""
+        }
+        
+    }
+    
+    @IBAction func clearPressed(_ sender: Any) {
+        playSound()
+        runningNumber = "0"
+        result = 0
+        sign = -1
+        leftNum = 0
+        rightNum = 0
     }
     
     func playSound(){

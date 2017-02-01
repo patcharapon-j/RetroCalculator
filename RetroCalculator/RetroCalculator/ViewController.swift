@@ -38,6 +38,10 @@ class ViewController: UIViewController {
     
     @IBAction func numberPressed(sender: UIButton){
         playSound()
+        
+        if runningNumber == "0" {
+            runningNumber = ""
+        }
         runningNumber += "\(sender.tag)"
         outputLabel.text = runningNumber
     }
@@ -84,6 +88,7 @@ class ViewController: UIViewController {
     @IBAction func clearPressed(_ sender: Any) {
         playSound()
         runningNumber = "0"
+        outputLabel.text = runningNumber
         result = 0
         sign = -1
         leftNum = 0
